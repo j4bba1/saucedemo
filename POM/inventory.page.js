@@ -7,7 +7,7 @@ exports.InventoryPage = class InventoryPage {
    */
   constructor(page) {
     this.page = page;
-    this.cartInd = page.locator('//span[@class="shopping_cart_badge"]');
+    this.cartBadge = page.locator('//span[@class="shopping_cart_badge"]')
     this.itemBag = page.locator('[data-test="item-4-title-link"]');
     this.itemBagAdd = page.locator('[data-test="add-to-cart-sauce-labs-backpack"]');
     this.itemBagRem = page.locator('[data-test="remove-sauce-labs-backpack"]');
