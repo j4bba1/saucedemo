@@ -26,6 +26,7 @@
    - check if the cart badge is not visible
 
 **ITEM PAGE**
+
 5. Add item "Sauce Labs Backpack" to cart from item page
 - name: Add item "Sauce Labs Backpack" - item
 	- add selected item to card form item page
