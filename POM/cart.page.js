@@ -8,7 +8,7 @@ exports.CartPage = class CartPage {
     constructor(page) {
       this.page = page;
       this.itemNameBag = page.locator('[data-test="item-4-title-link"]');
-      this.itemDescBag = page.locator('[data-test="continue-shopping"]');
+      this.itemDescBag = page.locator('[data-test="inventory-item-desc"]');
       this.itemPriceBag = page.locator('[data-test="inventory-item-price"]');
       this.itemRemoveBag = page.locator('[data-test="remove-sauce-labs-backpack"]');
       

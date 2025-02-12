@@ -29,8 +29,8 @@
 
 5. Add item "Sauce Labs Backpack" to cart from item page
 - name: Add item "Sauce Labs Backpack" - item
-	- add selected item to card form item page
-	- save the item name, description and price in to a variables "bagName", "bagDesc", "bagPrice"
-	- console log the variables
+	- add selected item to card from item page
 	- check if the button was clicked (the button changed from "Add" to "Remove")
 	- check if the cart badge changed to 1
+	- save the item name, description and price in to a variables "bagName", "bagDesc", "bagPrice"
+	- console log the variables

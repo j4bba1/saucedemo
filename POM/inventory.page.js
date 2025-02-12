@@ -7,10 +7,10 @@ exports.InventoryPage = class InventoryPage {
    */
   constructor(page) {
     this.page = page;
-    this.cartBadge = page.locator('//span[@class="shopping_cart_badge"]')
-    this.itemBag = page.locator('[data-test="item-4-title-link"]');
-    this.itemBagAdd = page.locator('[data-test="add-to-cart-sauce-labs-backpack"]');
-    this.itemBagRem = page.locator('[data-test="remove-sauce-labs-backpack"]');
+    this.inventoryCartBadge = page.locator('//span[@class="shopping_cart_badge"]')
+    this.inventoryBag = page.locator('[data-test="item-4-title-link"]');
+    this.inventoryBagAdd = page.locator('[data-test="add-to-cart-sauce-labs-backpack"]');
+    this.inventoryBagRem = page.locator('[data-test="remove-sauce-labs-backpack"]');
   }
 
   async goto() {
@@ -19,16 +19,16 @@ exports.InventoryPage = class InventoryPage {
 
   // interacting with the item Backpack
   async openItemBag() {
-    await this.itemBag.click();
+    await this.inventoryBag.click();
   };
 
   async addItemBag() {
-    await this.itemBagAdd.click();
-    await expect(this.itemBagRem).toBeVisible();
+    await this.inventoryBagAdd.click();
+    await expect(this.inventoryBagRem).toBeVisible();
   };
 
   async remItemBag() {
-    await this.itemBagRem.click();
-    await expect(this.itemBagAdd).toBeVisible();
+    await this.inventoryBagRem.click();
+    await expect(this.inventoryBagAdd).toBeVisible();
   };
 }
