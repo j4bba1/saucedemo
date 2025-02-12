@@ -16,7 +16,7 @@
 3. Add item "Sauce Labs Backpack" to cart from inventory
 - name: Add item "Sauce Labs Backpack" - inventory
    - add selected item to cart from inventory page
-   - check if the button was clicked (the button changed from "Add" to "Remove"
+   - check if the button was clicked (the button changed from "Add" to "Remove")
    - check if the cart badge changed to 1
 
 4. Remove item "Sauce Labs Backpack" from cart from inventory
