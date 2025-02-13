@@ -4,6 +4,7 @@ import { LoginPage } from '../POM/login.page';
 import exp from 'node:constants';
 import { CartPage } from '../POM/cart.page';
 import { ItemBagPage } from '../POM/itemBag.page';
+import { CheckoutPage } from '../POM/checkoutPage';
 
 let bagName = '';
 let bagDesc = '';
@@ -107,4 +108,28 @@ test('Cart page check - added item', async ({ page }) => {
     await expect(bagCartName).toEqual(bagName);
     await expect(bagCartDesc).toEqual(bagDesc);
     await expect(bagCardPrice).toEqual(bagPrice);
+});
+
+test('Fill checkout form', async ({page}) => {
+    const itemBagPage = new ItemBagPage(page);
+    const inventoryPage = new InventoryPage(page);
+    const cartPage = new CartPage(page);
+    const checkoutPage = new CheckoutPage(page);
+
+    const firstName = 'Harry';
+    const lastName = 'Potter';
+    const postCode = '123 45';
+
+    await inventoryPage.goto();
+    await inventoryPage.openItemBag();
+    await expect(page).toHaveURL('https://www.saucedemo.com/inventory-item.html?id=4');
+    //adding item
+    await itemBagPage.addItemBag();
+    //open cart page
+    await itemBagPage.openItemCart();
+    //open checkout page
+    await page.locator('[data-test="checkout"]').click();
+    await expect(page).toHaveURL('https://www.saucedemo.com/checkout-step-one.html');
+    //fill checkout form
+    await checkoutPage.fillCheckout(firstName, lastName, postCode);
 });
