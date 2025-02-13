@@ -22,5 +22,7 @@ exports.CheckoutPage = class CheckoutPage {
     await this.lastName.fill(lastName);
     await expect(this.postCode).toBeVisible();
     await this.postCode.fill(postCode);
+
+    await this.continueButton.click();
   };
 };

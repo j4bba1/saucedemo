@@ -35,6 +35,13 @@
 	- save the item name, description and price in to a variables "bagName", "bagDesc", "bagPrice"
 	- console log the variables
 
+6. Remove added item "Sauce Labs Backpack" from cart from cart page
+- name: Remove item "Sauce Labs Backpack" from cart page
+	- add selected item to cart
+	- go to cart page
+	- remove the item "Sauce Labs Backpack" from cart page
+	- check if the item was removed
+
 6. Fill in the checkout form
 - name: Fill checkout form
 	- add selected item to cart from item page

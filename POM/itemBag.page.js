@@ -1,5 +1,9 @@
 const { expect } = require('@playwright/test');
 
+
+
+
+
 exports.ItemBagPage = class ItemBagPage {
 
     /**
@@ -16,8 +20,6 @@ exports.ItemBagPage = class ItemBagPage {
       this.itemBagRem = page.locator('[data-test="remove"]');
       this.itemCartIcon = page.locator('[data-test="shopping-cart-link"]');
       this.itemCartBadge = page.locator('//span[@class="shopping_cart_badge"]');
-
-
     };
   
     async goto() {

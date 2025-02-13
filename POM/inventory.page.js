@@ -1,4 +1,5 @@
 const { expect } = require('@playwright/test');
+const exp = require('node:constants');
 
 exports.InventoryPage = class InventoryPage {
 
@@ -11,6 +12,9 @@ exports.InventoryPage = class InventoryPage {
     this.inventoryBag = page.locator('[data-test="item-4-title-link"]');
     this.inventoryBagAdd = page.locator('[data-test="add-to-cart-sauce-labs-backpack"]');
     this.inventoryBagRem = page.locator('[data-test="remove-sauce-labs-backpack"]');
+
+    this.openMenu = page.getByRole('button', { name: 'Open Menu' });
+    this.logoutButton = page.locator('[data-test="logout-sidebar-link"]');
   }
 
   async goto() {
@@ -31,4 +35,11 @@ exports.InventoryPage = class InventoryPage {
     await this.inventoryBagRem.click();
     await expect(this.inventoryBagAdd).toBeVisible();
   };
+
+  async logout() {
+    await this.openMenu.click()
+    await expect(this.logoutButton).toBeVisible();
+    await this.logoutButton.click();
+    await expect(this.page).toHaveURL('https://www.saucedemo.com/');
+  }
 }

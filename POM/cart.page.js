@@ -2,11 +2,13 @@ const { expect } = require('@playwright/test');
 
 exports.CartPage = class CartPage {
 
+
     /**
      * @param {import('@playwright/test').Page} page
      */
     constructor(page) {
       this.page = page;
+      this.itemInventory = page.locator('[data-test="inventory-item"]');
       this.itemNameBag = page.locator('[data-test="item-4-title-link"]');
       this.itemDescBag = page.locator('[data-test="inventory-item-desc"]');
       this.itemPriceBag = page.locator('[data-test="inventory-item-price"]');
@@ -18,11 +20,16 @@ exports.CartPage = class CartPage {
   
     async goto() {
       await this.page.goto('https://www.saucedemo.com/cart.html');
-    }
+    };
+    
+    async removeBag() {
+      await this.itemRemoveBag.click();
+      await expect(this.itemInventory).not.toBeVisible();
+    };
 
-    async checkVars(itemName) {
-      await expect(this.itemNameBag).toHaveText(itemName)
-    }
-
-
-}
+    async checkVars(itemName, itemDesc, itemPrice) {
+      await expect(this.itemNameBag).toHaveText(itemName);
+      await expect(this.itemDescBag).toHaveText(itemDesc);
+      await expect(this.itemPriceBag).toHaveText(itemPrice);
+    };
+  }
