@@ -11,6 +11,8 @@ exports.CheckoutPage = class CheckoutPage {
     this.lastName = page.locator('[data-test="lastName"]');
     this.postCode = page.locator('[data-test="postalCode"]');
 
+    this.errorCode = page.locator('[data-test="error"]');
+
     this.cancelButton = page.locator('[data-test="cancel"]');
     this.continueButton = page.locator('[data-test="continue"]');
   };

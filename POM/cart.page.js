@@ -8,7 +8,6 @@ exports.CartPage = class CartPage {
      */
     constructor(page) {
       this.page = page;
-      this.itemInventory = page.locator('[data-test="inventory-item"]');
       this.itemNameBag = page.locator('[data-test="item-4-title-link"]');
       this.itemDescBag = page.locator('[data-test="inventory-item-desc"]');
       this.itemPriceBag = page.locator('[data-test="inventory-item-price"]');
@@ -24,7 +23,9 @@ exports.CartPage = class CartPage {
     
     async removeBag() {
       await this.itemRemoveBag.click();
-      await expect(this.itemInventory).not.toBeVisible();
+      await expect(this.itemNameBag).not.toBeVisible();
+      await expect(this.itemPriceBag).not.toBeVisible();
+      await expect(this.itemDescBag).not.toBeVisible();
     };
 
     async checkVars(itemName, itemDesc, itemPrice) {

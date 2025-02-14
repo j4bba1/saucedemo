@@ -25,8 +25,13 @@ exports.CheckoutOverviewPage = class CheckoutOverviewPage {
       await expect(this.itemPriceBag).toHaveText(itemPrice); 
     }
 
-    async clickFinishButton(){
+    async clickFinishButton() {
       await this.finishButton.click();
       await expect(this.page).toHaveURL('https://www.saucedemo.com/checkout-complete.html');
     }
+
+    async clickCancelButton() {
+      await this.cancelButton.click();
+      await expect(this.page).toHaveURL('https://www.saucedemo.com/inventory.html');
+    };
 }
