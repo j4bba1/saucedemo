@@ -76,6 +76,28 @@ test.describe('Adding/removing item "Sauce Labs Backpack" to/from cart - invento
     });
 });
 
+test.describe('Sorting item', () => {
+    test.beforeEach('Opening page', async ({ page }) => {
+        const inventoryPage = new InventoryPage(page);
+        await inventoryPage.goto();
+    });
+
+    test('Z to A', async ({ page }) => {
+        const inventoryPage = new InventoryPage(page);
+        await inventoryPage.sortZtoA();
+    });
+
+    test('Low to High', async ({ page }) => {
+        const inventoryPage = new InventoryPage(page);
+        await inventoryPage.sortLowToHigh();
+    });
+    
+    test('High to Low', async ({ page }) => {
+        const inventoryPage = new InventoryPage(page);
+        await inventoryPage.sortHightToLow();
+    })
+});
+
 test.describe('Adding/removing item "Sauce Labs Backpack" to/from cart - item page', () => {
     test.beforeEach('Adding item', async ({ page }) => {
         const itemBagPage = new ItemBagPage(page);
@@ -138,7 +160,7 @@ test.describe('Verification of data in cart page. Removing item "Sauce Labs Back
     });
 });
 
-//setting values for the checkout pag
+//setting values for the checkout page
 [
     { nameTest: 'empty fistName', firstName: '', lastName: 'Potter', postCode: '123 45', expected: 'Error: First Name is required' },
     { nameTest: 'empty lastName',firstName: 'Harry', lastName: '', postCode: '123 45', expected: 'Error: Last Name is required' },
