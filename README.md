@@ -43,7 +43,7 @@ login.spec.js
         - login NOT okay<br>
         - error message<br>
 
-standard:user.spec.js
+standard:user.spec.js<br>
 3) standart user<br>
     TC10) login with standard user<br>
         - login okay<br>
