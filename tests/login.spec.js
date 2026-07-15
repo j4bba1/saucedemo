@@ -87,31 +87,69 @@ test.describe('Successfull login', ()=> {
     const homePage = new HomePage(page);
     const loginPage = new LoginPage(page);
     
-    const shopCart = loginPage.shopCart;
+    const parent = page.locator('//div[@class="shopping_cart_container"]');
+    const child = parent.locator('//a[@class="shopping_cart_link"]');
+
+    const item = await loginPage.invetoryItem
 
     await homePage.login(glitchUser, password);
-    await shopCart.waitFor({ state: 'visible', timeout: 10});
-    // await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');
+    //await shopCart.waitFor({ state: 'visible', timeout: 10});
+    await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');
+
+    //is shopping cart icon inside the right container
+    await expect(child).toHaveCount(1);
+
+  
+    // check items img is okay
+    for( let i = 0; i < ImgArr.length; i++ ) {
+      await expect(item.nth(i).locator('//img')).toHaveAttribute('src', ImgArr[i])
+    };
   });
 
   test('Successfull login with "error_user"', async ({ page }) => {
     const homePage = new HomePage(page);
+    const loginPage = new LoginPage(page);
+
+    const parent = page.locator('//div[@class="shopping_cart_container"]');
+    const child = parent.locator('//a[@class="shopping_cart_link"]');
+
+    const item = await loginPage.invetoryItem
+    
     
     await homePage.login(errorUser, password);
     await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');
+
+    //is shopping cart icon inside the right container
+    await expect(child).toHaveCount(1);
+
+    // check items img is okay
+    for( let i = 0; i < ImgArr.length; i++ ) {
+      await expect(item.nth(i).locator('//img')).toHaveAttribute('src', ImgArr[i]);
+    };
   });
 
   test('Successfull login with "visual_user"', async ({ page }) => {
     const homePage = new HomePage(page);
+    const loginPage = new LoginPage(page);
 
     const parent = page.locator('//div[@class="shopping_cart_container visual_failure"]');
     const child = parent.locator('//a[@class="shopping_cart_link"]');
+
+    const item = await loginPage.invetoryItem;
     
     await homePage.login(visualUser, password);
     await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');
 
     // shopping card icon is in wrong postion
-    await expect(child).toHaveCount(1)
+    await expect(child).toHaveCount(1);
+
+    // first image is not okay
+    await expect(item.nth(0).locator('//img')).toHaveAttribute('src', invImg);
+
+    // rest of images are okay
+    for( let i = 1; i < ImgArr.length; i++ ) {
+      await expect(item.nth(i).locator('//img')).toHaveAttribute('src', ImgArr[i]);
+    };
   });
 
 });
