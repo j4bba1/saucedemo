@@ -9,6 +9,8 @@ class LoginPage {
 
         this.shopCart = page.locator('[data-test="shopping-cart-link"]');
         this.invetoryItem = page.locator('//div[@class="inventory_item"]');
+    
+        this.filterSort = page.locator('[data-test="product-sort-container"]');
 
     };
 
@@ -17,6 +19,10 @@ class LoginPage {
         await this.logoutLink.waitFor();
         await this.logoutLink.click();
     }
+
+    async filter(option) {
+        await this.filterSort.selectOption(option);
+    };
 };
 
 export { LoginPage };

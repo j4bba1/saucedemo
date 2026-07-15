@@ -37,16 +37,16 @@ test.describe('Successfull login', ()=> {
     await loginPage.logout();
     await expect(page).toHaveURL('https://www.saucedemo.com/');
     await expect(homePage.loginBtn).toBeVisible();
-  })
+  });
 
-  test('Successfull login with "standard_user"', async ({ page }) => {
+  test('TC1) Successfull login with "standard_user"', async ({ page }) => {
     const homePage = new HomePage(page);
     const loginPage = new LoginPage(page);
     
     const parent = page.locator('//div[@class="shopping_cart_container"]');
     const child = parent.locator('//a[@class="shopping_cart_link"]');
 
-    const item = await loginPage.invetoryItem
+    const item = await loginPage.invetoryItem;
 
     await homePage.login(standardUser, password);
     await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');
@@ -60,7 +60,7 @@ test.describe('Successfull login', ()=> {
     };
   });
 
-  test('Successfull login with "problem_user"', async ({ page }) => {
+  test('TC2) Successfull login with "problem_user"', async ({ page }) => {
     // user has wrong item pictures
     const homePage = new HomePage(page);
     const loginPage = new LoginPage(page);
@@ -82,7 +82,7 @@ test.describe('Successfull login', ()=> {
     };
   });
 
-  test('Successfull login with "performance_glitch_user"', async ({ page }) => {
+  test('TC3) Successfull login with "performance_glitch_user"', async ({ page }) => {
     // login takes more time
     const homePage = new HomePage(page);
     const loginPage = new LoginPage(page);
@@ -106,7 +106,7 @@ test.describe('Successfull login', ()=> {
     };
   });
 
-  test('Successfull login with "error_user"', async ({ page }) => {
+  test('TC4) Successfull login with "error_user"', async ({ page }) => {
     const homePage = new HomePage(page);
     const loginPage = new LoginPage(page);
 
@@ -128,7 +128,7 @@ test.describe('Successfull login', ()=> {
     };
   });
 
-  test('Successfull login with "visual_user"', async ({ page }) => {
+  test('TC5) Successfull login with "visual_user"', async ({ page }) => {
     const homePage = new HomePage(page);
     const loginPage = new LoginPage(page);
 
@@ -169,7 +169,7 @@ test.describe('Unsuccessfull login', () => {
     await expect(page).toHaveTitle('Swag Labs');
   });
 
-  test('Invalid login with "locked_out_user"', async ({ page }) => {
+  test('TC6) Invalid login with "locked_out_user"', async ({ page }) => {
     const homePage = new HomePage(page);
 
     const errorTxt = 'Epic sadface: Sorry, this user has been locked out.';
@@ -179,7 +179,7 @@ test.describe('Unsuccessfull login', () => {
     await expect(homePage.errorMsg).toHaveText(errorTxt);
   });
 
-  test('Invalid login', async ({ page }) => {
+  test('TC7) Invalid login', async ({ page }) => {
     const homePage = new HomePage(page);
     const errorTxt = 'Epic sadface: Username and password do not match any user in this service';
 
@@ -188,7 +188,7 @@ test.describe('Unsuccessfull login', () => {
     await expect(homePage.errorMsg).toHaveText(errorTxt);
   });
 
-  test('Empty username', async ({ page }) => {
+  test('TC8) Empty username', async ({ page }) => {
     const homePage = new HomePage(page);
     const errorTxt = 'Epic sadface: Username is required'
 
@@ -197,7 +197,7 @@ test.describe('Unsuccessfull login', () => {
     await expect(homePage.errorMsg).toHaveText(errorTxt);
   });
 
-  test('Empty password', async ({ page }) => {
+  test('TC9) Empty password', async ({ page }) => {
     const homePage = new HomePage(page);
     const errorTxt = 'Epic sadface: Password is required'
 
