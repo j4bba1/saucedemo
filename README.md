@@ -31,14 +31,14 @@ login.spec.ts
         - login NOT okay<br>
         - error message
 
-    a) invalid user<br>
+    b) invalid user<br>
         - login NOT okay<br>
         - error message
 
-    a) empty username user<br>
+    c) empty username user<br>
         - login NOT okay<br>
         - error message
 
-    a) empty password user<br>
+    d) empty password user<br>
         - login NOT okay<br>
         - error message
