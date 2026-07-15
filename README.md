@@ -1,5 +1,5 @@
 # saucedemo
-login.spec.ts
+login.spec.js
 1) successfull login with:<br>
     TC1) standart user<br>
         - login okay<br>
@@ -43,6 +43,7 @@ login.spec.ts
         - login NOT okay<br>
         - error message<br>
 
+standard:user.spec.js
 3) standart user<br>
     TC10) login with standard user<br>
         - login okay<br>
