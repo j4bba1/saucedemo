@@ -23,6 +23,7 @@ class LoginPage {
     async filter(option) {
         await this.filterSort.selectOption(option);
     };
+
 };
 
 export { LoginPage };

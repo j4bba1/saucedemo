@@ -6,7 +6,8 @@ class HomePage {
         this.loginBtn = page.locator('//input[@id="login-button"]');
 
         this.errorMsg = page.locator('//h3[@data-test="error"]');
-        this.standardUser = page.locator('//div[@id="login_credentials"]')
+        this.errorCloseBtn = page.locator('[data-test="error-button"]');
+
     };
 
     async login(username, passoword) {
@@ -14,6 +15,10 @@ class HomePage {
         await this.passwordIn.fill(passoword);
         await this.loginBtn.click();
     };
+
+    async closeErrorMsg() {
+        await this.errorCloseBtn.click();
+    }
 };
 
 export { HomePage };
