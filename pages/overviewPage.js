@@ -21,6 +21,10 @@ class OverviewPage{
     async finish() {
         await this.finishBtn.click();
     };
+
+    async cancel() {
+        await this.cancelBtn.click();
+    }
 };
 
 export { OverviewPage };

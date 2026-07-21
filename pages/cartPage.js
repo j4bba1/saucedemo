@@ -6,7 +6,7 @@ class CartPage {
         this.desc = page.locator('[data-test="inventory-item-desc"]');
         this.price = page.locator('[data-test="inventory-item-price"]');
 
-        this.removeBtn = page.locator('[data-test="remove-sauce-labs-backpack"]');
+        this.removeBtn = page.locator('//button[@class="btn btn_secondary btn_small cart_button"]');
         this.conBtn = page.locator('[data-test="continue-shopping"]');
         this.checkoutBtn = page.locator('[data-test="checkout"]');
 

@@ -4,10 +4,12 @@ import { HomePage } from '../pages/homePage';
 import { LoginPage } from '../pages/loginPage';
 import { ProductPage } from '../pages/productPage';
 import { CartPage } from '../pages/cartPage';
-import { imgObj } from '../objects/imageObjects';
 import { usersObj } from '../objects/loginObjects';
 import { passwordsObj } from '../objects/loginObjects';
-import { productInfo } from '../objects/productInfoArr';
+import { pImgObj } from '../objects/productsObj';
+import { pNameObj } from '../objects/productsObj';
+import { pDescObj } from '../objects/productsObj';
+import { pPriceObj } from '../objects/productsObj';
 
 // Authentication and Login (14 Test Cases)
 
@@ -38,6 +40,7 @@ test.describe('Successfull login', ()=> {
     
     const parent = page.locator('//div[@class="shopping_cart_container"]');
     const child = parent.locator('//a[@class="shopping_cart_link"]');
+    const values = Object.values(pImgObj);
 
     const item = await loginPage.invetoryItem;
 
@@ -46,10 +49,9 @@ test.describe('Successfull login', ()=> {
 
     //is shopping cart icon inside the right container and is visible
     await expect(child).toHaveCount(1);
-    await expect(loginPage.shopCart).toBeVisible();
+    await expect(loginPage.cartIcon).toBeVisible();
 
     // check items img is okay
-    const values = Object.values(imgObj);
     for( let i = 0; i < values.length; i++ ) {
       await expect(item.nth(i).locator('//img')).toHaveAttribute('src', values[i])
     };
@@ -71,23 +73,23 @@ test.describe('Successfull login', ()=> {
 
     //is shopping cart icon inside the right container and is visible
     await expect(child).toHaveCount(1);
-    await expect(loginPage.shopCart).toBeVisible();
-    await expect(loginPage.shopCart).toHaveText('');
+    await expect(loginPage.cartIcon).toBeVisible();
+    await expect(loginPage.cartIcon).toHaveText('');
 
     // check items img is okay
-    const values = Object.values(imgObj);
+    const values = Object.values(pImgObj);
     for( let i = 0; i < values.length; i++ ) {
       await expect(item.nth(i).locator('//img')).toHaveAttribute('src', values[i])
     };
 
 
     // click on item and add it to cart
-    await page.getByText(productInfo.bagName).click();
+    await page.getByText(pNameObj.bagName).click();
 
-    await expect(productPage.img).toHaveAttribute('src', imgObj.bagImg);
-    await expect(productPage.name).toHaveText(productInfo.bagName);
-    await expect(productPage.desc).toHaveText(productInfo.bagDesc);
-    await expect(productPage.price).toContainText(productInfo.bagPrice);
+    await expect(productPage.img).toHaveAttribute('src', pImgObj.bagImg);
+    await expect(productPage.name).toHaveText(pNameObj.bagName);
+    await expect(productPage.desc).toHaveText(pDescObj.bagDesc);
+    await expect(productPage.price).toHaveText(pPriceObj.bagPrice);
 
     await productPage.addProduct();
     await expect(productPage.removeBtn).toBeVisible();
@@ -96,9 +98,9 @@ test.describe('Successfull login', ()=> {
     // cart page
     await productPage.cartIcon.click();
     await expect(cartPage.Qty).toHaveText('1');
-    await expect(cartPage.name).toHaveText(productInfo.bagName);
-    await expect(cartPage.desc).toHaveText(productInfo.bagDesc);
-    await expect(cartPage.price).toContainText(productInfo.bagPrice);
+    await expect(cartPage.name).toHaveText(pNameObj.bagName);
+    await expect(cartPage.desc).toHaveText(pDescObj.bagDesc);
+    await expect(cartPage.price).toHaveText(pPriceObj.bagPrice);
     await expect(cartPage.removeBtn).toBeVisible();
     await expect(cartPage.cartIcon).toHaveText('1');
 
@@ -111,7 +113,7 @@ test.describe('Successfull login', ()=> {
       await expect(item.nth(i).locator('//img')).toHaveAttribute('src', values[i])
     };
 
-    await expect(loginPage.shopCart).toHaveText('1');
+    await expect(loginPage.cartIcon).toHaveText('1');
   });
 
   test('TC-010: Login with Problem User', async ({ page }) => {
@@ -121,6 +123,7 @@ test.describe('Successfull login', ()=> {
 
     const parent = page.locator('//div[@class="shopping_cart_container"]');
     const child = parent.locator('//a[@class="shopping_cart_link"]');
+    const values = Object.values(pImgObj);
 
     const item = await loginPage.invetoryItem
     
@@ -131,7 +134,6 @@ test.describe('Successfull login', ()=> {
     await expect(child).toHaveCount(1);
 
     // check items img is not okay
-    const values = Object.values(imgObj);
     for( let i = 0; i < values.length; i++ ) {
       await expect(item.nth(i).locator('//img')).toHaveAttribute('src', invImg);
     };
@@ -144,18 +146,18 @@ test.describe('Successfull login', ()=> {
     
     const parent = page.locator('//div[@class="shopping_cart_container"]');
     const child = parent.locator('//a[@class="shopping_cart_link"]');
+    const values = Object.values(pImgObj);
 
     const item = await loginPage.invetoryItem
 
     await homePage.login(usersObj.glitchUser, passwordsObj.pw);
-    //await shopCart.waitFor({ state: 'visible', timeout: 10});
+    //await cartIcon.waitFor({ state: 'visible', timeout: 10});
     await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');
 
     //is shopping cart icon inside the right container
     await expect(child).toHaveCount(1);
   
     // check items img is okay
-    const values = Object.values(imgObj);
     for( let i = 0; i < values.length; i++ ) {
       await expect(item.nth(i).locator('//img')).toHaveAttribute('src', values[i])
     };
@@ -178,7 +180,7 @@ test.describe('Successfull login', ()=> {
     await expect(child).toHaveCount(1);
 
     // check items img is okay
-    const values = Object.values(imgObj);
+    const values = Object.values(pImgObj);
     for( let i = 0; i < values.length; i++ ) {
       await expect(item.nth(i).locator('//img')).toHaveAttribute('src', values[i]);
     };
@@ -190,6 +192,7 @@ test.describe('Successfull login', ()=> {
 
     const parent = page.locator('//div[@class="shopping_cart_container visual_failure"]');
     const child = parent.locator('//a[@class="shopping_cart_link"]');
+    const values = Object.values(pImgObj);
 
     const item = await loginPage.invetoryItem;
     
@@ -203,7 +206,6 @@ test.describe('Successfull login', ()=> {
     await expect(item.nth(0).locator('//img')).toHaveAttribute('src', invImg);
 
     // rest of images are okay
-    const values = Object.values(imgObj);
     for( let i = 1; i < values.length; i++ ) {
       await expect(item.nth(i).locator('//img')).toHaveAttribute('src', values[i]);
     };

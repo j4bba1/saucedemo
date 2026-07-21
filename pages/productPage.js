@@ -10,11 +10,20 @@ class ProductPage {
 
         this.addBtn = page.locator('[data-test="add-to-cart"]');
         this.removeBtn = page.locator('[data-test="remove"]');
+        this.backBtn = page.locator('[data-test="back-to-products"]');
     };
 
     async addProduct() {
         await this.addBtn.click();
     };
+
+    async backToProds() {
+        await this.backBtn.click();
+    };
+
+    async goToCart() {
+        await this.cartIcon.click();
+    }
 };
 
 export { ProductPage };

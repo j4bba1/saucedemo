@@ -5,6 +5,8 @@ class CheckoutPage {
         this.lastNameIn = page.locator('[data-test="lastName"]');
         this.zipCodeIn = page.locator('[data-test="postalCode"]');
 
+        this.errorEl = page.locator('//div[@class="error-message-container error"]');
+
         this.shopCart = page.locator('[data-test="shopping-cart-link"]');
 
         this.conBtn = page.locator('[data-test="continue"]');
@@ -20,6 +22,10 @@ class CheckoutPage {
     async continue() {
         await this.conBtn.click();
     };
+
+    async cancel() {
+        await this.cancelBtn.click();
+    }
 };
 
 export { CheckoutPage };
